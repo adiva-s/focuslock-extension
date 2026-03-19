@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FocusLock History</title>
+
+<style>
+body{
+  font-family:sans-serif;
+  background:#f5f7fb;
+  display:flex;
+  justify-content:center;
+  padding:40px;
+}
+
+.container{
+  width:500px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom:15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.right-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Toggle bar */
+.toggle-bar {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+  gap: 4px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.toggle-btn.active {
+  background: #4f6df5;
+  color: white;
+}
+
+/* Group cards */
+.group-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.group-header {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.group-header:hover { background: #f9fafb; }
+
+.group-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111;
+}
+
+.group-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.group-arrow {
+  color: #aaa;
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+
+.group-arrow.open { transform: rotate(180deg); }
+
+.group-sessions {
+  border-top: 1px solid #f0f0f0;
+  display: none;
+}
+
+.group-sessions.open { display: block; }
+
+.session-item {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.session-item:last-child { border-bottom: none; }
+
+.session-task {
+  font-weight: 500;
+  font-size: 14px;
+  color: #222;
+}
+
+.session-meta {
+  font-size: 12px;
+  color: #aaa;
+  margin: 2px 0 6px;
+}
+
+.session-summary {
+  font-size: 13px;
+  color: #555;
+  background: #f8f9ff;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="top-bar">
+    <button id="backBtn" style="
+        margin-bottom:15px;
+        padding:8px 12px;
+        border:none;
+        border-radius:6px;
+        background:#4f6df5;
+        color:white;
+        cursor:pointer;
+        ">
+        ← Back to Focus
+    </button>
+
+    <div class="right-actions">
+    <button id="exportBtn" style="
+        margin-bottom:15px;
+        margin-left:8px;
+        padding:8px 12px;
+        border:none;
+        border-radius:6px;
+        background:#024d22;
+        color:white;
+        cursor:pointer;
+        ">
+        ⬇️ Export History
+    </button>
+
+    <button id="importBtn" style="
+        margin-bottom:15px;
+        margin-left:8px;
+        padding:8px 12px;
+        border:none;
+        border-radius:6px;
+        background:#ea580c;
+        color:white;
+        cursor:pointer;
+        ">
+        ⬆️ Import History
+    </button>
+
+    <input id="importFile" type="file" accept=".json" style="display:none;">
+    </div>
+</div>
+
+<div class="header">
+  <h1>📖 Focus History</h1>
+  <h3 id="streak"></h3>
+</div>
+
+<div id="stats" style="
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  margin-bottom:20px;
+  text-align:center;
+"></div>
+
+<!-- Toggle bar -->
+<div class="toggle-bar">
+  <button class="toggle-btn active" data-view="day">Day</button>
+  <button class="toggle-btn" data-view="week">Week</button>
+  <button class="toggle-btn" data-view="month">Month</button>
+</div>
+
+<div id="history"></div>
+
+</div>
+
+<script src="history.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "FocusLock",
+  "version": "1.0",
+  "description": "Block distractions until your task is done.",
+
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "*://*.character.ai/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["block.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["focus.html","history.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

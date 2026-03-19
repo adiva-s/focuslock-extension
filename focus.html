@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FocusLock</title>
+<meta charset="UTF-8">
+<style>
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:sans-serif;
+  background:#f5f7fb;
+}
+
+.card{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  text-align:center;
+  width:320px;
+}
+
+h1{
+  margin-bottom:10px;
+}
+
+.timer{
+  font-size:28px;
+  margin:20px 0;
+}
+
+button{
+  padding:10px 16px;
+  margin-top:10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #4f6df5, #7c8cff);
+  transition: width 0.5s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1> Focus Mode</h1>
+
+<p id="taskText"></p>
+
+<div class="timer" id="timer"></div>
+
+<div class="progress-bar">
+  <div id="progressFill"></div>
+</div>
+<p id="progressText"></p> 
+
+<p id="statusText">Finish the mission first.</p>
+
+<div id="actions" style="display:none;">
+
+<button id="doneBtn">Task Finished</button>
+
+<button id="moreBtn">Add Time</button>
+
+</div>
+
+<div id="addTimeBox" style="display:none;">
+
+<input id="extraMinutes" placeholder="Minutes">
+
+<button id="addBtn">Add</button>
+
+</div>
+
+<div id="summaryBox" style="display:none;">
+
+<input id="summaryInput" placeholder="What did you complete?">
+
+<button id="saveSummary">Save</button>
+
+</div>
+
+</div>
+
+<script src="focus.js"></script>
+
+</body>
+</html>

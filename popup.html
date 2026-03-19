@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FocusLock</title>
+<meta charset="UTF-8">
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f5f7fb;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+button {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 320px;
+  text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<div id="setup">
+
+<h3>FocusLock</h3>
+
+<input id="task" placeholder="Task">
+
+<input id="minutes" placeholder="Minutes">
+
+<input id="blockedSites" placeholder="Blocked sites (comma separated)" />
+
+<button id="start">Start Session</button>
+
+</div>
+
+
+<div id="active" style="display:none;">
+
+<h3>FocusLock Active 🔒</h3>
+
+<p id="activeTask"></p>
+
+<p>Time remaining: <span id="timer"></span></p>
+
+<button id="end">End Session</button>
+
+</div>
+
+<hr>
+
+<h4 id="streak"></h4>
+
+<button id="viewHistory" style="
+  width:100%;
+  margin:10px 0;
+  padding:8px;
+  border:none;
+  border-radius:6px;
+  background:#4f6df5;
+  color:white;
+  cursor:pointer;
+">
+  View Full History
+</button>
+
+<div id="history"></div>
+
+
+<script src="popup.js"></script>
+</div>
+
+</body>
+</html>
