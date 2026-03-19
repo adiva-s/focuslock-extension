@@ -17,9 +17,6 @@ function showActive(task, endTime) {
 
     if (remaining <= 0) {
         timerText.textContent = "00:00"
-    //   chrome.storage.local.set({ focusLock:false })
-
-    //   location.reload()
       return
     }
 

@@ -1,7 +1,7 @@
 function checkAndBlock() {
   if(!chrome.runtime?.id) return
 
-  // 🚫 don't block extension pages
+  //  don't block extension pages
   if(window.location.href.startsWith("chrome-extension://")){
     return
   }
@@ -13,7 +13,6 @@ function checkAndBlock() {
 
       const { focusLock, endTime, blockedSites } = data
 
-      // ✅ correct condition
       if(!focusLock || !endTime || Date.now() > endTime) return
 
       const currentUrl = window.location.href

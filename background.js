@@ -6,10 +6,10 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
   try {
     tab = await chrome.tabs.get(activeInfo.tabId)
   } catch(e) {
-    return  // tab already closed
+    return  
   }
 
-  if(!tab || !tab.url) return  // 👈 guard
+  if(!tab || !tab.url) return  // guard 
 
   chrome.storage.local.get(["focusLock","endTime","blockedSites"], data => {
 
@@ -26,7 +26,7 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
     if(isBlocked){
       const focusUrl = chrome.runtime.getURL("focus.html")
       chrome.tabs.update(activeInfo.tabId, { url: focusUrl }, () => {
-        if(chrome.runtime.lastError) return  // 👈 handles the "user dragging tab" error
+        if(chrome.runtime.lastError) return  //  handles the "user dragging tab" error
       })
       focusTabId = activeInfo.tabId
     }

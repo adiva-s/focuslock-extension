@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   let intervalID
-  let isCompleting = false // 🔥 prevent reload bug
+  let isCompleting = false 
 
   const summaryInput = document.getElementById("summaryInput")
 
@@ -243,14 +243,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })
 
-// 🔥 FIXED LISTENER
+//  FIXED LISTENER
 chrome.storage.onChanged.addListener((changes, area) => {
 
   if(area === "local" && changes.focusLock){
 
     const newValue = changes.focusLock.newValue
 
-    // 🚫 DO NOT reload if we're completing session
+    //  DO NOT reload if we're completing session
     if(newValue === false && !window.isCompleting){
       location.reload()
     }
