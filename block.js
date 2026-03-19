@@ -1,6 +1,11 @@
-
 function checkAndBlock() {
-   if(!chrome.runtime?.id) return
+  if(!chrome.runtime?.id) return
+
+  // 🚫 don't block extension pages
+  if(window.location.href.startsWith("chrome-extension://")){
+    return
+  }
+
   try {
     chrome.storage.local.get(["focusLock","endTime","blockedSites"], data => {
 
@@ -8,7 +13,8 @@ function checkAndBlock() {
 
       const { focusLock, endTime, blockedSites } = data
 
-      if(!focusLock || Date.now() > endTime) return
+      // ✅ correct condition
+      if(!focusLock || !endTime || Date.now() > endTime) return
 
       const currentUrl = window.location.href
 
@@ -23,7 +29,7 @@ function checkAndBlock() {
 
     })
   } catch(e) {
-    return  // silently stop if extension was reloaded
+    return
   }
 }
 
