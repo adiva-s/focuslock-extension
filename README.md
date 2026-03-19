@@ -1,6 +1,28 @@
 # FocusLock
 A Chrome extension for distraction-free focus sessions, streak tracking, and accountability-driven productivity. 
 
+## Screenshots
+<table>
+  <tr>
+    <td><img src="screenshots/popup.png" width="280"/></td>
+    <td><img src="screenshots/focus_active.png" width="280"/></td>
+  </tr>
+  <tr>
+    <td align="center">Popup</td>
+    <td align="center">Focus Mode</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/focus_complete.png" width="280"/></td>
+    <td><img src="screenshots/mission_complete.png" width="280"/></td>
+  </tr>
+  <tr>
+    <td align="center">Session Complete</td>
+    <td align="center">Mission Complete</td>
+  </tr>
+</table>
+
+<img src="screenshots/history.png" width="580"/>
+
 ## What It Does
 FocusLock helps users stay focused and build consistent work habits through structured sessions, progress tracking, and reflection. Unlike passive timers, FocusLock requires you to define a specifc task before starting a session, encouraging clarity and goal-oriented work. 
 
@@ -24,8 +46,8 @@ FocusLock helps users stay focused and build consistent work habits through stru
 
 ## Motivation
 As a student balancing intensive academic work and personal projects, I often struggled with staying focused despite using traditional productivity tools. Many tools either focused solely on blocking distractions or tracking time, but didn't address the full workflow of intentional work. 
-I built FocusLock to solve this problem by creating a system that encourages:
 
+I built FocusLock to solve this problem by creating a system that encourages:
 - Setting a clear task before starting
 - Eliminating distractions during work
 - Reflecting on what was accomplished afterward
