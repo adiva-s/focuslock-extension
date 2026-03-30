@@ -53,6 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
         actions.style.display = "block"
 
         clearInterval(intervalID)
+
+        // FIX: freeze the end time the moment the timer hits zero
+        chrome.storage.local.set({ sessionEndTime: Date.now() })
+
         return
       }
 
@@ -87,17 +91,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return
     }
 
-    chrome.storage.local.get(["sessions","task","startTime"], data => {
+    // FIX: include sessionEndTime in the get call
+    chrome.storage.local.get(["sessions","task","startTime","sessionEndTime"], data => {
 
       const sessions = data.sessions || []
 
       const today = new Date().toISOString()
-      const now = Date.now()
       const startTime = data.startTime
+
+      // FIX: use sessionEndTime (frozen at timer end) instead of Date.now()
+      const sessionEndTime = data.sessionEndTime || Date.now()
 
       let duration = 0
       if(startTime){
-        duration = Math.round((now - startTime) / 60000)
+        duration = Math.round((sessionEndTime - startTime) / 60000)
       }
 
       const newSession = {
@@ -137,10 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       window.isCompleting = true 
 
+      // FIX: also clear sessionEndTime on save
       chrome.storage.local.set({
         sessions: sessions,
         focusLock: false,
-        startTime: null
+        startTime: null,
+        sessionEndTime: null
       }, () => {
 
         document.querySelector(".card").innerHTML = `
