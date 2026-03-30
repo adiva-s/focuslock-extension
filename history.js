@@ -152,7 +152,11 @@ function renderHistory(sessions, view){
 // --- Main ---
 chrome.storage.local.get(["sessions"], data => {
 
-  const sessions = data.sessions || []
+  // Dates to exclude from stats and history (format: YYYY-MM-DD)
+  const IGNORED_DATES = ["2026-03-18"]
+
+  const allSessions = data.sessions || []
+  const sessions = allSessions.filter(s => !IGNORED_DATES.some(d => s.date.startsWith(d)))
   const statsDiv = document.getElementById("stats")
   const totalSessions = sessions.length
 
